@@ -1,0 +1,90 @@
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el encabezado */
+header {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #333;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    color: #555;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* Estilos para el contenido principal */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+main h2 {
+    color: #555;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+main p {
+    color: #333;
+}
+
+/* Estilos para las imágenes */
+main img {
+    max-width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer h3 {
+    color: #555;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a {
+    color: #555;
+    text-decoration: none;
+}
+
+/* Estilos para el aviso de derechos reservados */
+#derechos {
+    margin-top: 20px;
+}
+
+#derechos p {
+    color: #555;
+}
