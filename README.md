@@ -53,6 +53,8 @@ Con ChatGPT, podrás:
 
 ## La breve historia de Alex y Chat-GPT
 
+![Historia Alex](./screenshots/historia-alex.png)
+
 Había una vez un joven emprendedor llamado Alex, apasionado por la inteligencia artificial y su potencial para cambiar el mundo. Desde muy temprana edad, Alex soñaba con crear una empresa que revolucionara la forma en que las personas interactúan con la tecnología. Su objetivo era desarrollar una herramienta que pudiera comprender y responder a las preguntas de las personas de manera natural y coherente.
 
 Un día, mientras investigaba sobre las últimas innovaciones en inteligencia artificial, Alex descubrió ChatGPT. Quedó maravillado por la capacidad del modelo para generar texto y tener conversaciones casi humanas. Se dio cuenta de que tenía en sus manos la oportunidad de hacer realidad su sueño.
