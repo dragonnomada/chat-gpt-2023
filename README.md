@@ -75,7 +75,7 @@ Y así, el cuento de Alex, el emprendedor de inteligencia artificial que usó Ch
 
 ## Diseño de una Calculadora funcional para HTML y Javascript
 
-![Calculadora.0](./p101-calculadora/preview-0.png)
+![Calculadora.0](./resultados/p101-calculadora/preview-0.png)
 
 ¡Claro! Aquí te presento el código para una calculadora funcional básica en HTML, CSS y JavaScript:
 
@@ -180,6 +180,6 @@ Ten en cuenta que esta calculadora es básica y no incluye características avan
 
 > Resultado:
 
-![Calculadora.1](./p101-calculadora/preview-1.png)
+![Calculadora.1](./resultados/p101-calculadora/preview-1.png)
 
-![Calculadora.2](./p101-calculadora/preview-2.png)
+![Calculadora.2](./resultados/p101-calculadora/preview-2.png)
