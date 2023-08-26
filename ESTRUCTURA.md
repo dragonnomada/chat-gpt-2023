@@ -31,7 +31,7 @@ Aprender a generar imágenes con DALL-E. Generar imágenes que describan histori
 
 ## Sesión 5 - Manejo de grandes volúmenes de datos
 
-Aprender a manipular grandes volúmenes de datos de Excel a través de la programación asistida por CHATGPT. Hacer que CHATGPT genere los programas necesarios para crear reportes estadísticos de grandes volúmenes de datos extraídos desde excel. Generar reportes de texto/CSV y PDF para mostrar los resultados del análisis.
+Aprender a manipular grandes volúmenes de datos de Excel a través de la programación asistida por AUTO-GPT. Hacer que CHATGPT genere los programas necesarios para crear reportes estadísticos de grandes volúmenes de datos extraídos desde excel. Generar reportes de texto/CSV y PDF para mostrar los resultados del análisis.
 
 ## Sesión 6 - SPEECH-TO-TEXT y TEXT-TO-SPEECH
 
