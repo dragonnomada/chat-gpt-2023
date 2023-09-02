@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    frequency
+    <input type="range" id="fIn" min="40" max="6000" oninput="show()" />
+    <span id="fOut"></span><br>
+    type
+    <input type="range" id="tIn" min="0" max="3" oninput="show()" />
+    <span id="tOut"></span><br>
+    volume
+    <input type="range" id="vIn" min="0" max="100" oninput="show()" />
+    <span id="vOut"></span><br>
+    duration
+    <input type="range" id="dIn" min="1" max="5000" oninput="show()" />
+    <span id="dOut"></span>
+    <br>
+    <button onclick='beep();'>Play</button>
+
+    <script>
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        show();
+
+        function show() {
+            frequency = document.getElementById("fIn").value;
+            document.getElementById("fOut").innerHTML = frequency + ' Hz';
+
+            switch (document.getElementById("tIn").value * 1) {
+                case 0: type = 'sine'; break;
+                case 1: type = 'square'; break;
+                case 2: type = 'sawtooth'; break;
+                case 3: type = 'triangle'; break;
+            }
+            document.getElementById("tOut").innerHTML = type;
+
+            volume = document.getElementById("vIn").value / 100;
+            document.getElementById("vOut").innerHTML = volume;
+
+            duration = document.getElementById("dIn").value;
+            document.getElementById("dOut").innerHTML = duration + ' ms';
+        }
+
+        async function beep(customFrequency = null, customDuration = null) {
+            if (customFrequency) {
+                frequency = customFrequency
+            }
+
+            if (customDuration) {
+                duration = customDuration
+            }
+
+            var oscillator = audioCtx.createOscillator();
+            var gainNode = audioCtx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            gainNode.gain.value = volume;
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+
+            oscillator.start();
+
+            return await new Promise(resolve => {
+                setTimeout(
+                    function () {
+                        oscillator.stop();
+                        resolve();
+                    },
+                    duration
+                );
+            })
+        };
+
+        const notes = {
+            "C4": 261,
+            "D4": 293,
+            "E4": 329,
+            "F4": 349,
+            "G4": 369,
+            "A4": 440,
+            "B4": 494,
+            "E5": 660,
+        }
+
+        window.addEventListener("load", async () => {
+            await beep(notes["C4"], 200);
+            await beep(notes["D4"], 200);
+            await beep(notes["E4"], 200);
+            await beep(notes["F4"], 400);
+            await beep(notes["G4"], 200);
+            await beep(notes["A4"], 400);
+        })
+
+        // A4/1:B4/2
+    </script>
+
+</body>
+
+</html>
