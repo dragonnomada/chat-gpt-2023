@@ -2,10 +2,10 @@ const express = require('express');
 const multer = require('multer');
 const AdmZip = require('adm-zip');
 const fs = require('fs');
+const pdf = require('pdf-parse'); // Importa la biblioteca pdf-parse
 const app = express();
 const port = 3000;
 
-// Configuración de multer para gestionar la carga de archivos ZIP
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads');
@@ -17,8 +17,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Ruta para cargar archivos ZIP
-app.post('/upload', upload.single('zipFile'), (req, res) => {
+app.post('/upload', upload.single('zipFile'), async (req, res) => {
   const zipFilePath = `uploads/${req.file.originalname}`;
   const unzipDir = `uploads/${req.file.originalname.split('.zip')[0]}`;
 
@@ -26,10 +25,27 @@ app.post('/upload', upload.single('zipFile'), (req, res) => {
   const zip = new AdmZip(zipFilePath);
   zip.extractAllTo(unzipDir, true);
 
+  // Leer y procesar archivos PDF
+  const pdfFiles = fs.readdirSync(unzipDir);
+
+  for (const pdfFile of pdfFiles) {
+    if (pdfFile.endsWith('.pdf')) {
+      const pdfFilePath = `${unzipDir}/${pdfFile}`;
+
+      // Extraer el texto del PDF con pdf-parse
+      const dataBuffer = fs.readFileSync(pdfFilePath);
+      const data = await pdf(dataBuffer);
+
+      // Guardar el texto en un archivo .txt
+      const textFilePath = `${unzipDir}/${pdfFile.replace('.pdf', '.txt')}`;
+      fs.writeFileSync(textFilePath, data.text);
+    }
+  }
+
   // Eliminar el archivo ZIP cargado
   fs.unlinkSync(zipFilePath);
 
-  res.status(200).json({ message: 'Archivos ZIP descomprimidos exitosamente.' });
+  res.status(200).json({ message: 'Archivos ZIP descomprimidos y textos extraídos exitosamente.' });
 });
 
 // Ruta para servir el formulario HTML
