@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+import pdfkit
+from flask import Flask, render_template, request, redirect, url_for, Response
+
 import json
 
 app = Flask(__name__)
@@ -103,6 +105,38 @@ def agregar_noticia(noticia):
     noticias.append(noticia)
     with open('noticias.json', 'w') as archivo:
         json.dump(noticias, archivo, indent=4)
+
+@app.route('/descargar_pdf')
+def descargar_pdf():
+    # Cargar noticias desde un archivo JSON (supongamos que se llama noticias.json)
+    with open('noticias.json', 'r') as json_file:
+        noticias = json.load(json_file)
+
+    contenido_html = '<html><head><title>Noticias</title></head><body>'
+    
+    for noticia in noticias:
+        contenido_html += f"<h2>{noticia['titulo']}</h2>"
+        contenido_html += f"<p>Resumen: {noticia['resumen']}</p>"
+        contenido_html += f"<p>Puntos Principales: {noticia['puntos_principales']}</p>"
+        contenido_html += f"<p>{noticia['contenido']}</p>"
+    
+    contenido_html += '</body></html>'
+    
+    # Guardar el contenido HTML como noticias.html
+    with open('noticias.html', 'w') as html_file:
+        html_file.write(contenido_html)
+    
+    # Crear el archivo PDF a partir del contenido HTML
+    pdfkit.from_file('noticias.html', 'noticias.pdf')
+
+    # Abrir el archivo PDF y devolverlo como respuesta para descargar
+    with open('noticias.pdf', 'rb') as pdf_file:
+        pdf_content = pdf_file.read()
+    
+    response = Response(pdf_content, content_type='application/pdf')
+    response.headers['Content-Disposition'] = 'inline; filename=noticias.pdf'
+    
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
