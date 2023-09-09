@@ -66,9 +66,22 @@ app.post('/upload', upload.single('zipFile'), async (req, res) => {
     }
   }
 
-  // Guardar el texto acumulado en un archivo
-  const allSummariesFilePath = `${unzipDir}/all_summaries.txt`;
-  fs.writeFileSync(allSummariesFilePath, allSummaries);
+  // Procesar los resúmenes utilizando el API de Completación de Chat de OpenAI
+  const prompt = `Resumen de puntos importantes de todos los documentos\n${allSummaries}`;
+  const completionResponse = await openai.chat.completions.create({
+    messages: [
+      { role: 'system', content: 'Eres un asistente que extrae puntos importantes' },
+      { role: 'user', content: prompt },
+    ],
+    model: 'gpt-3.5-turbo-16k',
+    // max_tokens: 150, // Ajusta según tus necesidades
+  });
+
+  const importantPoints = completionResponse.choices[0].message.content;
+
+  // Guardar los puntos importantes en un archivo .txt
+  const importantPointsFilePath = `${unzipDir}/important_points.txt`;
+  fs.writeFileSync(importantPointsFilePath, importantPoints);
 
   // Eliminar el archivo ZIP cargado
   fs.unlinkSync(zipFilePath);
