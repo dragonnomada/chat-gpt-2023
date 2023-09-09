@@ -1,7 +1,9 @@
 import pdfkit
-from flask import Flask, render_template, request, redirect, url_for, Response
+from flask import Flask, render_template, request, redirect, url_for, Response, send_from_directory
 
 import json
+import requests
+import time
 
 app = Flask(__name__)
 
@@ -14,7 +16,7 @@ def index():
 import openai
 
 # Define tu clave de API de OpenAI
-openai.api_key = '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'
+openai.api_key = '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'
 
 def obtener_resumen_puntos_principales(contenido):
     # Llama al API de ChatGPT para obtener el resumen
@@ -57,6 +59,10 @@ def generar_puntos_principales(contenido):
 
     return response
 
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
+
 def generar_imagen_descriptiva(texto_descriptivo):
     # Llama al API de Imagen de OpenAI para generar una imagen
     response = openai.Image.create(
@@ -66,11 +72,21 @@ def generar_imagen_descriptiva(texto_descriptivo):
         size="256x256",  # Tamaño de la imagen generada
     )
 
-    # Obtiene la URL de la imagen generada
+    # Guardar la imagen localmente
     imagen_url = response.data[0].url
+    timestamp = int(time.time())
+    imagen_nombre = f"imagen_descriptiva_{timestamp}.jpg"
+    try:
+        response = requests.get(imagen_url)
+        response.raise_for_status()  # Lanzar una excepción si hay un error HTTP
+        with open(f"static/{imagen_nombre}", 'wb') as imagen_file:
+            imagen_file.write(response.content)
+    except requests.exceptions.RequestException as e:
+        # Manejar el error de descarga de la imagen (puedes registrar el error si es necesario)
+        print(f"Error al descargar la imagen descriptiva: {e}")
 
-    return imagen_url
-
+    # Devolver la ruta relativa de la imagen
+    return f"/static/{imagen_nombre}"
 
 @app.route('/subir_noticia', methods=['POST'])
 def subir_noticia():
@@ -116,6 +132,12 @@ def descargar_pdf():
     
     for noticia in noticias:
         contenido_html += f"<h2>{noticia['titulo']}</h2>"
+
+        # Utilizar la URL de la imagen proporcionada en la noticia
+        imagen_url = noticia.get('imagen_url', '')  # Obtener la URL de la imagen de la noticia
+        if imagen_url:
+            contenido_html += f"<img src='{imagen_url}' alt='Imagen noticia'>"
+        
         contenido_html += f"<p>Resumen: {noticia['resumen']}</p>"
         contenido_html += f"<p>Puntos Principales: {noticia['puntos_principales']}</p>"
         contenido_html += f"<p>{noticia['contenido']}</p>"

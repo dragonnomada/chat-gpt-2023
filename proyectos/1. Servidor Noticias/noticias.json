@@ -19,5 +19,19 @@
         "resumen": "<!DOCTYPE html>\n<html>\n<head>\n<title>Resumen de noticia</title>\n</head>\n<body>\n<h1>Padres de familia exigen a las autoridades posicionamiento sobre bloqueo en aulas</h1>\n<p>Ciudad de M\u00e9xico, 9 de septiembre del 2023 - A las 8:00 am, padres de familia se manifestaron frente a las instalaciones del metro polit\u00e9cnico para exigir a las autoridades un posicionamiento frente al bloqueo en las aulas.</p>\n</body>\n</html>",
         "puntos_principales": "<!DOCTYPE html>\n<html>\n<head>\n<title>Padres de familia se manifiestan por bloqueo en aulas</title>\n</head>\n<body>\n<h1>Ciudad de M\u00e9xico, 9 de septiembre del 2023</h1>\n<p>A las 8:00 am padres de familia se manifestaron frente a las instalaciones del metro polit\u00e9cnico para exigir a las autoridades un posicionamiento frente al bloqueo en las aulas.</p>\n</body>\n</html>",
         "imagen_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-DrY5Xa411v1ocIHXutB3vn8F/user-oQWikgjRVz5D0ghuFFKP8SEi/img-WNuP6M18yQ01X5swkiHyGFqp.png?st=2023-09-09T14%3A59%3A46Z&se=2023-09-09T16%3A59%3A46Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-09-08T18%3A16%3A44Z&ske=2023-09-09T18%3A16%3A44Z&sks=b&skv=2021-08-06&sig=PiCenVmgudUi4XPRgk1LxXX68k1dD8T24Nywe6jRGDA%3D"
+    },
+    {
+        "titulo": "Cierran la autopista del Sol",
+        "contenido": "Quedan atrapados en el calor m\u00e1s de 5,000 turistas",
+        "resumen": "<!DOCTYPE html>\n<html>\n<head>\n<title>Resumen de noticias</title>\n</head>\n<body>\n<h1>Quedan atrapados en el calor m\u00e1s de 5,000 turistas</h1>\n<p>M\u00e1s de 5,000 turistas se encuentran atrapados en una situaci\u00f3n de calor extremo en una popular zona tur\u00edstica. Las altas temperaturas han provocado problemas en el transporte y en los servicios b\u00e1sicos, lo que ha llevado a que muchos turistas no puedan abandonar el lugar.</p>\n<p>Las autoridades locales est\u00e1n trabajando para proporcionar ayuda y asistencia a los turistas afectados. Se han establecido puntos de atenci\u00f3n y se est\u00e1n distribuy",
+        "puntos_principales": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Quedan atrapados en el calor m\u00e1s de 5,000 turistas</title>\n  </head>\n  <body>\n    <h1>Quedan atrapados en el calor m\u00e1s de 5,000 turistas</h1>\n    <ul>\n      <li>El calor extremo deja atrapados a m\u00e1s de 5,000 turistas.</li>\n      <li>Las altas temperaturas impiden el acceso a carreteras y aeropuertos.</li>\n      <li>Las autoridades trabajan para rescatar a los turistas varados.</li>\n      <li>Se han",
+        "imagen_url": "static/imagen_descriptiva.jpg"
+    },
+    {
+        "titulo": "Fallece Gandhi",
+        "contenido": "A los 130 a\u00f1os el l\u00edder espiritual muere alcanzando el nirvana",
+        "resumen": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Resumen del fallecimiento del l\u00edder espiritual</title>\n</head>\n<body>\n    <h1>Resumen del fallecimiento del l\u00edder espiritual</h1>\n    <p>A los 130 a\u00f1os, el l\u00edder espiritual ha fallecido alcanzando el nirvana.</p>\n</body>\n</html>",
+        "puntos_principales": "<h1>Puntos principales:</h1>\n<ul>\n  <li>A los 130 a\u00f1os el l\u00edder espiritual muere</li>\n  <li>Alcanza el nirvana</li>\n</ul>",
+        "imagen_url": "/static/imagen_descriptiva_1694277247.jpg"
     }
 ]
