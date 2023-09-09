@@ -109,10 +109,10 @@ def agregar_noticia(noticia):
 @app.route('/descargar_pdf')
 def descargar_pdf():
     # Cargar noticias desde un archivo JSON (supongamos que se llama noticias.json)
-    with open('noticias.json', 'r') as json_file:
+    with open('noticias.json', 'r', encoding='utf-8') as json_file:
         noticias = json.load(json_file)
 
-    contenido_html = '<html><head><title>Noticias</title></head><body>'
+    contenido_html = '<html><head><meta charset="UTF-8"><title>Noticias</title></head><body>'
     
     for noticia in noticias:
         contenido_html += f"<h2>{noticia['titulo']}</h2>"
@@ -123,7 +123,7 @@ def descargar_pdf():
     contenido_html += '</body></html>'
     
     # Guardar el contenido HTML como noticias.html
-    with open('noticias.html', 'w') as html_file:
+    with open('noticias.html', 'w', encoding='utf-8') as html_file:
         html_file.write(contenido_html)
     
     # Crear el archivo PDF a partir del contenido HTML
