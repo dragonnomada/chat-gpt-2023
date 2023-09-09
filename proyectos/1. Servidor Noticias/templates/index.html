@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Noticias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Noticias</h1>
+    <ul>
+        {% for noticia in noticias %}
+            <li>
+                <h2>{{ noticia['titulo'] }}</h2>
+                <img src="{{ noticia['imagen_url'] }}" alt="{{ noticia['titulo'] }}">
+                <p>Resumen: {{ noticia['resumen'] | safe }}</p>
+                <p>Puntos Principales: {{ noticia['puntos_principales'] | safe }}</p>
+                <p>{{ noticia['contenido'] | safe }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Subir Noticia</h2>
+    <form method="POST" action="/subir_noticia">
+        <label for="titulo">Título:</label>
+        <input type="text" name="titulo" required><br>
+        <label for="contenido">Contenido:</label>
+        <textarea name="contenido" required></textarea><br>
+        <input type="submit" value="Subir Noticia">
+    </form>
+</body>
+</html>
