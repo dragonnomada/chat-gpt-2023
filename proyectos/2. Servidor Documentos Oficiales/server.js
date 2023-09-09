@@ -89,7 +89,21 @@ app.post('/upload', upload.single('zipFile'), async (req, res) => {
   // Analizar los resúmenes con OpenAI (aquí debes implementar tu análisis específico)
   // Por ejemplo, podrías enviar el texto a una función de análisis personalizada
 
-  res.status(200).json({ message: 'Archivos ZIP descomprimidos, textos extraídos, resúmenes generados y analizados exitosamente.' });
+  // Mostrar los puntos importantes como contenido HTML
+  const htmlResponse = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Puntos Importantes</title>
+    </head>
+    <body>
+      <h1>Puntos Importantes</h1>
+      <div>${importantPoints}</div>
+    </body>
+    </html>
+  `;
+
+  res.send(htmlResponse);
 });
 
 // Ruta para exponer important_points.txt como recurso descargable

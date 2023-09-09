@@ -16,7 +16,7 @@ def index():
 import openai
 
 # Define tu clave de API de OpenAI
-openai.api_key = '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'
+openai.api_key = 'TU_API_KEY'
 
 def obtener_resumen_puntos_principales(contenido):
     # Llama al API de ChatGPT para obtener el resumen
