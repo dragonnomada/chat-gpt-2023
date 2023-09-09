@@ -400,3 +400,41 @@ En este código, hemos incluido las partes clave de la aplicación Flask y la pl
 
 ### Comentarios del Proyecto 1
 
+El proyecto pudo alcanzar el objetivo, sin embargo, la calidad del diseño es mejorable, así como otras partes.
+
+La principal ventaja de utilizar CHATGPT como asistente es el ahorro en la generación de código, pero el costo asociado a las peticiones y resolver los problemas intermedios es muy alto.
+
+> Tabla de Dificultad
+
+* Enviar la noticia mediante un formulario
+* Recibir la noticia mediante un formulario
+* Mostrar las noticias y el formulario
+ 
+No tuvo mayor dificultad en generar un servidor de FLASK que recibiera noticias desde un formulario y las guardara en un JSON. Genero un HTML y un archivo de Python con todo lo necesario y se pudo montar sin problemas.
+
+* Generar el resumen y los puntos principales de la noticia con CHATGPT
+
+Se le solicitó agregar el resumen y los puntos principales usando CHATGPT:
+
+    - El código generado utilizaba una versión vieja para la generación (`davinci`) 
+    - El código no hacia dos llamadas simultáneas, sino que nos pedia dividir manualmente las peticiones
+    - Se tuvo que especificar cómo se tendría que incorporar dicho código (`EXPERTO`)
+
+* Generar la imagen de la noticia con DALL-E
+
+    - El código no utiliza el API de DALL-E y hay especificarlo (`NO FUNCIONAL`)
+
+Mostrar las noticias utilizando la imagen generada y el resumen
+
+    - El código HTML no se veía correctamente (`EXPERTO`)
+    - Inclusión de diseño
+
+Generar un PDF con las noticias
+
+    - No funcionó hasta descargar WKHTMLTOPDF
+    - La url no funcionaba y se tuvo que corregir desde la creación (`EXPERTO`)
+
+## Proyecto .3
+
+
+
