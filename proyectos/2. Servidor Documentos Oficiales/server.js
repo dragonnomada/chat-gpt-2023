@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Configura tu clave de API de OpenAI
-const apiKey = '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'; // Reemplaza con tu clave de API
+const apiKey = 'TU_API_KEY'; // Reemplaza con tu clave de API
 
 app.post('/upload', upload.single('zipFile'), async (req, res) => {
   const zipFilePath = `uploads/${req.file.originalname}`;
@@ -33,7 +33,9 @@ app.post('/upload', upload.single('zipFile'), async (req, res) => {
   // Leer y procesar archivos PDF
   const pdfFiles = fs.readdirSync(unzipDir);
 
-  const openai = new OpenAIApi({ apiKey: apiKey });
+  const openai = new OpenAIApi({ apiKey });
+
+  let allSummaries = ''; // Variable para almacenar todos los resúmenes
 
   for (const pdfFile of pdfFiles) {
     if (pdfFile.endsWith('.pdf')) {
@@ -45,34 +47,36 @@ app.post('/upload', upload.single('zipFile'), async (req, res) => {
 
       // Generar un resumen utilizando el API de Completación de Chat de OpenAI
       const prompt = `Traduce a español y resumen de \n${data.text}`;
-
-      console.log(prompt);
-
       const completionResponse = await openai.chat.completions.create({
         messages: [
-            { role: 'system', content: 'Eres un asistente que genera resúmenes' },
-            { role: 'user', content: prompt },
+          { role: 'system', content: 'Eres un asistente que genera resúmenes' },
+          { role: 'user', content: prompt },
         ],
         model: 'gpt-3.5-turbo-16k',
-        
       });
 
-      console.log(completionResponse);
-
       const summary = completionResponse.choices[0].message.content;
-
-      console.log({ summary });
 
       // Guardar el resumen en un archivo .txt
       const summaryFilePath = `${unzipDir}/${pdfFile.replace('.pdf', '_summary.txt')}`;
       fs.writeFileSync(summaryFilePath, summary);
+
+      // Agregar el resumen al texto acumulado
+      allSummaries += summary + '\n';
     }
   }
+
+  // Guardar el texto acumulado en un archivo
+  const allSummariesFilePath = `${unzipDir}/all_summaries.txt`;
+  fs.writeFileSync(allSummariesFilePath, allSummaries);
 
   // Eliminar el archivo ZIP cargado
   fs.unlinkSync(zipFilePath);
 
-  res.status(200).json({ message: 'Archivos ZIP descomprimidos, textos extraídos y resúmenes generados exitosamente.' });
+  // Analizar los resúmenes con OpenAI (aquí debes implementar tu análisis específico)
+  // Por ejemplo, podrías enviar el texto a una función de análisis personalizada
+
+  res.status(200).json({ message: 'Archivos ZIP descomprimidos, textos extraídos, resúmenes generados y analizados exitosamente.' });
 });
 
 // Ruta para servir el formulario HTML
