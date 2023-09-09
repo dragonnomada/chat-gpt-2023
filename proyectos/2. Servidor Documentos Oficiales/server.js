@@ -92,6 +92,29 @@ app.post('/upload', upload.single('zipFile'), async (req, res) => {
   res.status(200).json({ message: 'Archivos ZIP descomprimidos, textos extraídos, resúmenes generados y analizados exitosamente.' });
 });
 
+// Ruta para exponer important_points.txt como recurso descargable
+app.get('/download/:zipName', (req, res) => {
+    const zipName = req.params.zipName;
+    const importantPointsFilePath = `uploads/${zipName}/important_points.txt`;
+  
+    fs.access(importantPointsFilePath, fs.constants.F_OK, (err) => {
+      if (err) {
+        console.error('El archivo important_points.txt no existe para este ZIP.');
+        res.status(404).json({ message: 'El archivo important_points.txt no existe para este ZIP.' });
+        return;
+      }
+  
+      res.download(importantPointsFilePath, 'important_points.txt', (err) => {
+        if (err) {
+          console.error('Error al descargar el archivo:', err);
+          res.status(500).json({ message: 'Error al descargar el archivo' });
+        } else {
+          console.log('Archivo descargado exitosamente');
+        }
+      });
+    });
+  });
+
 // Ruta para servir el formulario HTML
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
